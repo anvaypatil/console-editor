@@ -4,6 +4,7 @@ mod filetype;
 mod highlighting;
 mod row;
 mod terminal;
+mod status_message;
 
 pub use document::Document;
 use editor::Editor;

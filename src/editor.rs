@@ -1,10 +1,10 @@
 use crate::Document;
 use crate::Row;
 use std::env;
-use std::time::Duration;
-use std::time::Instant;
+use std::time::{Duration, Instant};
 use termion::color;
 use termion::event::Key;
+use crate::status_message::StatusMessage;
 use crate::terminal::Terminal;
 
 const STATUS_FG_COLOR: color::Rgb = color::Rgb(63, 63, 63);
@@ -22,20 +22,6 @@ pub enum SearchDirection {
 pub struct Position {
     pub x: usize,
     pub y: usize,
-}
-
-struct StatusMessage {
-    text: String,
-    time: Instant,
-}
-
-impl StatusMessage {
-    fn from(message: String) -> Self {
-        Self {
-            time: Instant::now(),
-            text: message,
-        }
-    }
 }
 
 pub struct Editor {
