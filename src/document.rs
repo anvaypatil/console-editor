@@ -48,10 +48,8 @@ impl Document {
             self.rows.push(Row::default());
             return;
         }
-        #[allow(clippy::indexing_slicing)]
             let current_row = &mut self.rows[at.y];
         let new_row = current_row.split(at.x);
-        #[allow(clippy::integer_arithmetic)]
         self.rows.insert(at.y + 1, new_row);
     }
     pub fn insert(&mut self, at: &Position, c: char) {
@@ -66,7 +64,6 @@ impl Document {
             row.insert(0, c);
             self.rows.push(row);
         } else {
-            #[allow(clippy::indexing_slicing)]
                 let row = &mut self.rows[at.y];
             row.insert(at.x, c);
         }
@@ -79,7 +76,6 @@ impl Document {
             row.is_highlighted = false;
         }
     }
-    #[allow(clippy::integer_arithmetic, clippy::indexing_slicing)]
     pub fn delete(&mut self, at: &Position) {
         let len = self.rows.len();
         if at.y >= len {
@@ -111,7 +107,6 @@ impl Document {
     pub fn is_dirty(&self) -> bool {
         self.dirty
     }
-    #[allow(clippy::indexing_slicing)]
     pub fn find(&self, query: &str, at: &Position, direction: SearchDirection) -> Option<Position> {
         if at.y >= self.rows.len() {
             return None;
@@ -158,7 +153,6 @@ impl Document {
         } else {
             self.rows.len()
         };
-        #[allow(clippy::indexing_slicing)]
         for row in &mut self.rows[..until] {
             start_with_comment = row.highlight(
                 &self.file_type.highlighting_options(),
